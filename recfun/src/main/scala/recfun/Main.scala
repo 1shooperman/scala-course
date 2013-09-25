@@ -14,22 +14,18 @@ object Main {
   /**
    * Exercise 1
    */ 
+
   def pascal(c: Int, r: Int): Int = {
-    def factorial(n: => Int): Int = {
-      if (n > 0) (n * factorial(n - 1))
-      else 1
+    def factorial(n: Int): BigInt = {
+      def loop(n: Int, acc: => BigInt): BigInt = {
+        if (n > 1) loop(n - 1, n * acc)
+        else acc
+      }
+      loop(n, 1)
     }
     
-    def bruteFind(c: Int, r: Int): Int = {
-      if (c > r || r * c < 0) 0
-      else if (c == 0 || c == r) 1
-      else if (c == 1 || c == r - 1) r
-      else bruteFind(c, r - 1) + bruteFind(c - 1, r - 1)
-    }
-
     if (c > r || r * c < 0) 0
-    else if (factorial(r) == 0 || factorial(c) == 0) bruteFind(c, r)
-    else factorial(r) / (factorial(r - c) * factorial(c))
+    else (factorial(r) / (factorial(r - c) * factorial(c))).toInt
   }
 
   /**
