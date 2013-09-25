@@ -1,0 +1,9 @@
+.cache
+lib_managed/
+project/
+target/
+.settings/
+.project
+*.sbt
+submission/
+.classpath
